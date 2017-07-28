@@ -5,6 +5,8 @@ import sys
 from setuptools import setup
 from unittest import TestLoader
 
+sys.path.insert (0, './test')
+
 desc = 'Python3 Tests Factory'
 tests_discover = TestLoader ().discover ('test', '*_t.py'),
 
