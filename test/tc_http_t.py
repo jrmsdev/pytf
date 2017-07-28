@@ -11,5 +11,4 @@ class TC_HTTP_T (TBase):
         k = TC_HTTP ('filename', 'tname')
         k.doRequest = MagicMock (return_value = MockResponse ())
         k.runTest ()
-        k.doRequest.assert_called ()
         t.assertEqual (k.doRequest.called, 1)
