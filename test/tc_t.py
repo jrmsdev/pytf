@@ -1,16 +1,8 @@
-from unittest import TestCase
-from configparser import ConfigParser
+from base import TBase
+from tc import TC_BASE
 
-import tc
+class TC_T (TBase):
 
-class TC_T (TestCase):
-
-    def testLoad (t):
-        obj = None
-        fn = './data/s0/t0.ini'
-        with open (fn, 'r') as fh:
-            p = ConfigParser ()
-            p.read_file (fh)
-            obj = tc.load (fn, p)
-            fh.close ()
-        t.assertIsNotNone (obj)
+    def testTCBase (t):
+        k = TC_BASE ('filename', 'tname')
+        t.assertEqual (str (k), 'filename tname')

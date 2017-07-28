@@ -3,7 +3,7 @@ from unittest.suite import TestSuite
 from glob import glob
 from os import path
 
-import tc
+import loader
 
 def load (src):
     s = TestSuite ()
@@ -18,7 +18,7 @@ def load (src):
         with open (f, 'r') as fh:
             p = ConfigParser ()
             p.read_file (fh)
-            for t in tc.load (f, p):
+            for t in loader.load (f, p):
                 s.addTest (t)
             fh.close ()
 

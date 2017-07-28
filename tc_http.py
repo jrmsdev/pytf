@@ -1,16 +1,24 @@
-from tc_base import TC_BASE
+from tc import TC_BASE
+from urllib.request import urlopen
 
 class TC_HTTP (TC_BASE):
     enable = True
-    port = 80
     ssl = False
     uri = None
+    post = None
+    timeout = 10
+    status = 200
 
     def validate (t, d):
         t.enable = bool (d.get ('enable', t.enable))
-        t.port = int (d.get ('port', t.port))
         t.ssl = bool (d.get ('ssl', t.ssl))
-        t.uri = str (d.get ('uri', t.uri))
+        t.uri = d.get ('uri', t.uri)
+        t.post = d.get ('post', t.post)
+        t.timeout = int (d.get ('timeout', t.timeout))
+
+    def doRequest (t):
+        return urlopen (t.uri, t.post, t.timeout)
 
     def runTest (t):
-        pass
+        resp = t.doRequest ()
+        t.assertEqual (resp.status, t.status)

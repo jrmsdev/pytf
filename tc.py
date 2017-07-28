@@ -1,25 +1,14 @@
-import tc_http
+from unittest import TestCase
+from os.path import dirname, basename, join
 
-TCMAP = {
-    'http': tc_http.TC_HTTP,
-}
+class TC_BASE (TestCase):
+    filename = None
+    name = None
 
-def load (filename, cfg):
+    def __init__ (t, filename, name):
+        t.filename = join (basename (dirname (filename)), basename (filename))
+        t.name = name
+        super (TC_BASE, t).__init__ ()
 
-    def loadAttribs (sec, obj):
-        d = dict ()
-        for optn, optv in cfg.items (sec):
-            if hasattr (obj, optn):
-                d[optn] = optv
-            else:
-                raise RuntimeError ('invalid test class option: ' + optn)
-        obj.validate (d)
-        return obj
-
-    for sec in cfg.sections ():
-        n = sec.split (':')[0].strip ()
-        k = TCMAP.get (n, None)
-        if k is None:
-            raise RuntimeError ('invalid test class: ' + n)
-        else:
-            yield loadAttribs (sec, k (filename, sec))
+    def __str__ (t):
+        return ' '.join ([t.filename.replace ('.ini', ''), t.name])
