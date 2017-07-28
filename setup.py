@@ -33,7 +33,7 @@ setup(
         'Operating System :: POSIX :: Linux',
     ],
 
-    py_modules = ['tf', 'cmd', 'loader', 'suite', 'tc', 'tc_http'],
+    py_modules = ['tf', 'loader', 'suite', 'tc', 'tc_http'],
     data_files = [
         ('', ['LICENSE', 'README.md']),
         ('examples', ['examples/basic.ini']),
