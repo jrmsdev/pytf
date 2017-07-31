@@ -9,6 +9,9 @@ if __name__ == '__main__':
 
     import sys
     from unittest import TextTestRunner
+    import version
+
+    print ('tf v{}'.format (version.getString ()))
 
     verbose = 1
     if '-v' in sys.argv:
