@@ -5,4 +5,4 @@ os: linux
 sudo: false
 
 script:
-    - cd test && ./run.sh -v
+    - ./test.py -v
